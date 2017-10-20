@@ -1,5 +1,4 @@
-
-# Created by https://www.gitignore.io/api/c,c++,visualstudio
+# Created by https://www.gitignore.io/api/c,c++,xcode,visualstudio
 
 ### C ###
 # Prerequisites
@@ -73,6 +72,38 @@ dkms.conf
 *.lai
 
 # Executables
+
+### Xcode ###
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+### Xcode Patch ###
+*.xcodeproj/*
+			  !*.xcodeproj/project.pbxproj
+			  !*.xcodeproj/xcshareddata/
+			  !*.xcworkspace/contents.xcworkspacedata
+			  /*.gcno
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -208,12 +239,12 @@ AutoTest.Net/
 # DocProject is a documentation generator add-in
 DocProject/buildhelp/
 DocProject/Help/*.HxT
-DocProject/Help/*.HxC
-DocProject/Help/*.hhc
-DocProject/Help/*.hhk
-DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
+				 DocProject/Help/*.HxC
+				 DocProject/Help/*.hhc
+				 DocProject/Help/*.hhk
+				 DocProject/Help/*.hhp
+				 DocProject/Help/Html2
+				 DocProject/Help/html
 
 # Click-Once directory
 publish/
@@ -325,11 +356,11 @@ typings/
 
 # Visual Studio LightSwitch build output
 **/*.HTMLClient/GeneratedArtifacts
-**/*.DesktopClient/GeneratedArtifacts
-**/*.DesktopClient/ModelManifest.xml
-**/*.Server/GeneratedArtifacts
-**/*.Server/ModelManifest.xml
-_Pvt_Extensions
+	**/*.DesktopClient/GeneratedArtifacts
+		**/*.DesktopClient/ModelManifest.xml
+			**/*.Server/GeneratedArtifacts
+				**/*.Server/ModelManifest.xml
+					_Pvt_Extensions
 
 # Paket dependency manager
 .paket/paket.exe
@@ -366,4 +397,4 @@ __pycache__/
 # By default, sensitive information, such as encrypted password
 # should be stored in the .pubxml.user file.
 
-# End of https://www.gitignore.io/api/c,c++,visualstudio
+# End of https://www.gitignore.io/api/c,c++,xcode,visualstudio
