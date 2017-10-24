@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
         
         size = static_cast<int>(strlen(argv[1]));
         
-        for(int i = 1 ; i <= 3 ; i++) {
+        for(i = 1 ; i <= 3 ; i++) {
             for(j = 0 ; j < size; j++) {
                 if( argv[i][j]  < '0' || '9' < argv[i][j] )
                     break;
@@ -61,7 +61,7 @@ int main(int argc, const char * argv[]) {
     E = atoi(argv[3]);
     
     FILE **files = new FILE *[N];
-    for(int i = 1 ; i <= N ; i++) {
+    for(i = 1 ; i <= N ; i++) {
         char fileName[MAX_FILENAME_LENGTH];
         
         sprintf(fileName, "thread%d", i);
@@ -70,8 +70,8 @@ int main(int argc, const char * argv[]) {
     
     srand(static_cast<unsigned int>(time(NULL)));
     
-    lys::RecordManager recordManager = lys::RecordManager(N);
-    
+    lys::RecordManager recordManager = lys::RecordManager(R);
+    lys::ThreadManager threadManager = lys::ThreadManager(N, E);
     
     
     return 0;

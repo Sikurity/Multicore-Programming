@@ -13,45 +13,42 @@
 
 namespace lys {
     
-    typedef struct Thread{
+    typedef struct Thread {
         
     private:
         
         /// Mark: Private Member Variable
-        pthread_mutex_t readLock;
-        pthread_mutex_t writeLock;
         pthread_t thread;
-        
+        pthread_cond_t cond;
         
         /// Mark: Private Member Method
-        static void *transactionMethod(void *);
+        static void *transactionMethodWrapper(void *);
+        void transactionMethod();
     
     public:
         
         /// Mark: Public Member Variable
         int threadNum;
         
+        /// Mark: Public Member Method
+        
+        Thread();
+        
     } Thread;
     
-        
+    
     typedef struct ThreadManager {
-    
-    private:
-    
-        /// Mark: Private Static Variable
-        static int gloablRecoredMutex;
-        static int goalExecutionOrder;
-        static int currentExecutionOrder;
-        
-        
-        /// Mark: Private Static Method
-        static void *transactionFunc(void *obj);
         
     public:
         
         /// Mark: Public Member Variable
-        int numberOfThreads;
-        Thread *threads;
+        
+        static int goalExecutionOrder;
+        static int currentExecutionOrder;
+        static pthread_mutex_t gloablRecoredMutex;
+        
+        static int numberOfThreads;
+        static Thread *threads;
         
         /// Mark: Public Member Method
         ThreadManager(int N, int E);

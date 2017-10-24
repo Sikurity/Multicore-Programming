@@ -12,30 +12,23 @@
 typedef long long LL;
 
 namespace lys {
+    
+    Record::Record() {
+        value = 100ll;
+    };
+    
+    int RecordManager::numberOfRecords;
+    Record *RecordManager::records;
 
-    RecordManager::RecordManager(int N) {
+    RecordManager::RecordManager(int R) {
         
-        numberOfRecords = N;
+        numberOfRecords = R;
         
-        this->records = new LL[numberOfRecords];
-        
-        for(int i = 0 ; i < N ; i++)
-            this->records[i] = 100ll;
+        this->records = new Record[numberOfRecords];
     }
 
     RecordManager::~RecordManager() {
         
         delete[] this->records;
     }
-
-    RandomNumber RecordManager::GetRandomNumber() {
-        RandomNumber numbers;
-        
-        numbers.i = rand() % numberOfRecords;
-        numbers.j = rand() % numberOfRecords;
-        numbers.k = rand() % numberOfRecords;
-        
-        return numbers;
-    }
-    
 }
