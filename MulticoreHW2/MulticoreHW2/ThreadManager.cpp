@@ -3,7 +3,7 @@
 //  MulticoreHW2
 //
 //  Created by YeongsikLee on 2017. 10. 15..
-//  Copyright © 2017년 boostcamp. All rights reserved.
+//  Copyright © 2017년 Hanyang Osori. All rights reserved.
 //
 
 #include <stdio.h>
@@ -13,7 +13,7 @@
 
 namespace lys {
     
-    bool isPrevThreadAllRead() {
+    bool isFirstRequestTypeRead() {
         
         return true;
     }
@@ -102,9 +102,9 @@ namespace lys {
             
             pthread_mutex_lock(&ThreadManager::gloablRecoredMutex);
             
-            list<int> &waitingList_i = RecordManager::records[i].requestThreadNum;
+            list<ResourceRequest> &waitingList_i = RecordManager::records[i].requestThreadNum;
             
-            if( waitingList_i.empty() || isPrevThreadAllRead() ) {
+            if( waitingList_i.empty() || waitingList_i.begin()->rw == READ) {
                 
                 pthread_mutex_unlock(&ThreadManager::gloablRecoredMutex);
                 record_i = RecordManager::records[i].value;
@@ -128,7 +128,7 @@ namespace lys {
             
             pthread_mutex_lock(&ThreadManager::gloablRecoredMutex);
             
-            list<int> &waitingList_j = RecordManager::records[j].requestThreadNum;
+            list<ResourceRequest> &waitingList_j = RecordManager::records[j].requestThreadNum;
             
             if( waitingList_j.empty()) {
                 
@@ -156,9 +156,11 @@ namespace lys {
                 }
             }
             
+            
+            
             pthread_mutex_lock(&ThreadManager::gloablRecoredMutex);
             
-            list<int> &waitingList_k = RecordManager::records[j].requestThreadNum;
+            list<ResourceRequest> &waitingList_k = RecordManager::records[j].requestThreadNum;
             
             if( waitingList_k.empty()) {
                 
@@ -193,7 +195,6 @@ namespace lys {
             // RecordManager::records[k].wakeUpWaitingThreads();
             
             commit_id = ++ThreadManager::currentExecutionOrder;
-            
             if (commit_id > ThreadManager::goalExecutionOrder) {
                 rollBack(3);
                 pthread_mutex_unlock(&ThreadManager::gloablRecoredMutex);

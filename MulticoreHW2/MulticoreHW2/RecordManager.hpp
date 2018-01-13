@@ -3,7 +3,7 @@
 //  MulticoreHW2
 //
 //  Created by YeongsikLee on 2017. 10. 15..
-//  Copyright © 2017년 boostcamp. All rights reserved.
+//  Copyright © 2017년 Hanyang Osori. All rights reserved.
 //
 #include <pthread.h>
 #include <list>
@@ -23,13 +23,27 @@ using namespace std;
 
 namespace lys {
     
+    enum RequestType {
+        READ = 1,
+        WRITE = 2
+    };
+    
+    typedef struct ResourceRequest {
+        
+        RequestType rw;
+        int threadNum;
+        
+    } ResourceRequest;
+    
     typedef struct Record {
         
         LL value;
         
-        list<int> requestThreadNum;
+        list<ResourceRequest> requestThreadNum;
         
         Record();
+        
+        void wakeUpWaitingThreads();
         
     } Record;
 
@@ -38,6 +52,8 @@ namespace lys {
     public:
         static int numberOfRecords;
         static Record *records;
+        
+        bool isFirstRequestTypeRead();
         
         RecordManager(int N);
         ~RecordManager();

@@ -3,7 +3,7 @@
 //  MulticoreHW2
 //
 //  Created by YeongsikLee on 2017. 10. 15..
-//  Copyright © 2017년 boostcamp. All rights reserved.
+//  Copyright © 2017년 Hanyang Osori. All rights reserved.
 //
 
 #ifndef ThreadManager_hpp
